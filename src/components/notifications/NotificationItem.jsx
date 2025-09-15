@@ -1,6 +1,12 @@
-// src/components/notifications/NotificationItem.jsx
-import React from 'react';
-import { FiBell, FiMessageSquare, FiFileText, FiStar, FiClipboard } from 'react-icons/fi';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+  FiBell,
+  FiMessageSquare,
+  FiFileText,
+  FiStar,
+  FiClipboard,
+} from "react-icons/fi";
 
 const NotificationIcon = ({ type }) => {
   const iconMap = {
@@ -17,23 +23,55 @@ const NotificationIcon = ({ type }) => {
   );
 };
 
-const NotificationItem = ({ notification, onClick }) => (
-  <li
-    onClick={onClick}
-    className={`flex items-start gap-4 p-4 transition cursor-pointer 
-      ${notification.read_at ? 'bg-white hover:bg-gray-50' : 'bg-sky-50 hover:bg-sky-100'}`}
-  >
-    <NotificationIcon type={notification.data.type} />
-    <div className="flex-grow">
-      <p className="text-sm text-gray-800">{notification.data.message}</p>
-      <p className="text-xs text-gray-500 mt-1">
-        {new Date(notification.created_at).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' })}
-      </p>
-    </div>
-    {!notification.read_at && (
-      <div className="w-2.5 h-2.5 bg-sky-500 rounded-full self-center flex-shrink-0"></div>
-    )}
-  </li>
-);
+NotificationIcon.propTypes = {
+  type: PropTypes.string,
+};
+
+const NotificationItem = ({ notification, onClick }) => {
+  return (
+    <li>
+      <button
+        type="button"
+        onClick={onClick}
+        className={`w-full flex items-start gap-4 p-4 transition text-left 
+          ${
+            notification.read_at
+              ? "bg-white hover:bg-gray-50"
+              : "bg-sky-50 hover:bg-sky-100"
+          }`}
+      >
+        <NotificationIcon type={notification.data.type} />
+        <div className="flex-grow">
+          <p className="text-sm text-gray-800">{notification.data.message}</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {new Date(notification.created_at).toLocaleString("ar-EG", {
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
+          </p>
+        </div>
+        {!notification.read_at && (
+          <div
+            className="w-2.5 h-2.5 bg-sky-500 rounded-full self-center flex-shrink-0"
+            aria-label="إشعار غير مقروء"
+          ></div>
+        )}
+      </button>
+    </li>
+  );
+};
+
+NotificationItem.propTypes = {
+  notification: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    read_at: PropTypes.string,
+    created_at: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      type: PropTypes.string,
+      message: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default NotificationItem;

@@ -1,19 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
-import { fileURLToPath } from 'url'; // 1. قم باستيراد هذه الدالة
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// 2. احصل على المسار الحالي بالطريقة الحديثة
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react( ), tailwindcss()],
   resolve: {
     alias: {
-      // 3. الآن سيعمل __dirname بشكل صحيح
       "@": path.resolve(__dirname, "./src"),
     },
   },
@@ -22,8 +20,16 @@ export default defineConfig({
     port: 5174,
     strictPort: true,
     watch: {
-      // لا تنسَ أن هذا السطر هو الحل للمشكلة الأصلية
       ignored: ['**/*.json'],
-    }
-  }
-})
+    },
+    // --- بداية الإضافة ---
+    proxy: {
+      // أي طلب يبدأ بـ /api سيتم توجيهه إلى الخادم الخلفي
+      '/api': {
+        target: 'http://localhost:3000', // عنوان الخادم الخلفي (json-server )
+        changeOrigin: true, // ضروري للبروكسي الافتراضي
+        rewrite: (path) => path.replace(/^\/api/, ''), // يزيل /api من بداية المسار قبل إرساله للخادم
+      },
+    },
+  },
+});

@@ -1,9 +1,24 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const FormField = ({ id, label, type = 'text', value, onChange, placeholder, required = true, rows }) => (
+const FormField = ({
+  id,
+  label,
+  type = "text",
+  value,
+  onChange,
+  placeholder,
+  required = true,
+  rows,
+}) => (
   <div>
-    <label htmlFor={id} className="block mb-2 text-sm font-medium text-neutral-700">{label}</label>
-    {type === 'textarea' ? (
+    <label
+      htmlFor={id}
+      className="block mb-2 text-sm font-medium text-neutral-700"
+    >
+      {label}
+    </label>
+    {type === "textarea" ? (
       <textarea
         id={id}
         name={id}
@@ -29,22 +44,43 @@ const FormField = ({ id, label, type = 'text', value, onChange, placeholder, req
   </div>
 );
 
-const ContactForm = ({ formData, setFormData, onSubmit, loading, error, success }) => {
+FormField.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  rows: PropTypes.number,
+};
+
+const ContactForm = ({
+  formData,
+  setFormData,
+  onSubmit,
+  loading,
+  error,
+  success,
+}) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <form onSubmit={onSubmit} className="bg-white p-6 rounded-2xl shadow border border-gray-300 space-y-5">
-      <FormField 
+    <form
+      onSubmit={onSubmit}
+      className="bg-white p-6 rounded-2xl shadow border border-gray-300 space-y-5"
+    >
+      <FormField
         id="name"
         label="الاسم الكامل"
         value={formData.name}
         onChange={handleChange}
         placeholder="أدخل اسمك الكامل"
       />
-      <FormField 
+      <FormField
         id="email"
         label="البريد الإلكتروني"
         type="email"
@@ -52,7 +88,7 @@ const ContactForm = ({ formData, setFormData, onSubmit, loading, error, success 
         onChange={handleChange}
         placeholder="you@example.com"
       />
-      <FormField 
+      <FormField
         id="message"
         label="الرسالة"
         type="textarea"
@@ -61,7 +97,11 @@ const ContactForm = ({ formData, setFormData, onSubmit, loading, error, success 
         placeholder="اكتب رسالتك هنا..."
       />
 
-      {success && <p className="text-green-600 text-sm text-center">✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.</p>}
+      {success && (
+        <p className="text-green-600 text-sm text-center">
+          ✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+        </p>
+      )}
       {error && <p className="text-red-600 text-sm text-center">{error}</p>}
 
       <button
@@ -69,10 +109,19 @@ const ContactForm = ({ formData, setFormData, onSubmit, loading, error, success 
         disabled={loading}
         className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 px-4 rounded-xl transition text-sm font-semibold disabled:opacity-50"
       >
-        {loading ? 'جارٍ الإرسال...' : 'إرسال'}
+        {loading ? "جارٍ الإرسال..." : "إرسال"}
       </button>
     </form>
   );
+};
+
+ContactForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  success: PropTypes.string,
 };
 
 export default ContactForm;

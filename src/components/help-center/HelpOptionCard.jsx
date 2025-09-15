@@ -1,7 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const HelpOptionCard = ({ to, onClick, icon, title, description, ariaLabel }) => {
+const HelpOptionCard = ({
+  to,
+  onClick,
+  icon,
+  title,
+  description,
+  ariaLabel,
+}) => {
   const cardContent = (
     <div className="p-6 bg-white rounded-xl border border-gray-200 shadow hover:shadow-md transition-shadow duration-300 flex flex-col items-center min-h-[180px] text-center">
       <div className="text-cyan-600 text-3xl mb-4">{icon}</div>
@@ -18,20 +26,26 @@ const HelpOptionCard = ({ to, onClick, icon, title, description, ariaLabel }) =>
     );
   }
 
-  // إذا كان هناك إجراء خارجي، استخدم <div> مع معالج النقر
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
-      className="cursor-pointer"
+      className="w-full text-left"
       aria-label={ariaLabel}
       title={description}
     >
       {cardContent}
-    </div>
+    </button>
   );
+};
+
+HelpOptionCard.propTypes = {
+  to: PropTypes.string,
+  onClick: PropTypes.func,
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string,
 };
 
 export default HelpOptionCard;

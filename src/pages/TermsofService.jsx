@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TermItem = ({ number, title, children }) => (
   <li>
@@ -9,6 +10,12 @@ const TermItem = ({ number, title, children }) => (
   </li>
 );
 
+TermItem.propTypes = {
+  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
 const TermsOfService = () => {
   const lastUpdated = new Date().toLocaleDateString("ar-EG", {
     year: "numeric",
@@ -16,39 +23,37 @@ const TermsOfService = () => {
     day: "numeric",
   });
 
-  // ===============================================================
-  // قسم الـ JSX (تم الحفاظ عليه كما هو من تصميمك الأصلي 100%)
-  // ===============================================================
   return (
     <div className="bg-gray-50 py-12 mt-14">
-      <article 
+      <article
         className="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-lg border border-gray-300 text-neutral-800 leading-relaxed"
-        role="document" // تحسين إمكانية الوصول
       >
         <header className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-cyan-700">
-            شروط الخدمة
-          </h1>
+          <h1 className="text-3xl font-bold text-cyan-700">شروط الخدمة</h1>
         </header>
 
         <main>
           <ol className="space-y-10">
             <TermItem number={1} title="القبول بالشروط">
-              باستخدامك لهذه المنصة، فإنك توافق على الالتزام بجميع الشروط والبنود المنصوص عليها في هذه الوثيقة.
-              إذا كنت لا توافق على أي جزء من الشروط، فلا يجوز لك استخدام المنصة.
+              باستخدامك لهذه المنصة، فإنك توافق على الالتزام بجميع الشروط
+              والبنود المنصوص عليها في هذه الوثيقة. إذا كنت لا توافق على أي جزء
+              من الشروط، فلا يجوز لك استخدام المنصة.
             </TermItem>
 
             <TermItem number={2} title="استخدام المنصة">
-              يجب على المستخدم الالتزام بالاستخدام السليم للمنصة وعدم إساءة استخدامها أو استخدامها لأغراض غير مشروعة.
-              يحق للإدارة اتخاذ الإجراءات اللازمة ضد أي انتهاك.
+              يجب على المستخدم الالتزام بالاستخدام السليم للمنصة وعدم إساءة
+              استخدامها أو استخدامها لأغراض غير مشروعة. يحق للإدارة اتخاذ
+              الإجراءات اللازمة ضد أي انتهاك.
             </TermItem>
 
             <TermItem number={3} title="الحسابات والمحتوى">
-              يتحمل المستخدم مسؤولية الحفاظ على سرية بيانات الحساب. لا يجوز نشر أو مشاركة محتوى يخالف السياسات أو القوانين.
+              يتحمل المستخدم مسؤولية الحفاظ على سرية بيانات الحساب. لا يجوز نشر
+              أو مشاركة محتوى يخالف السياسات أو القوانين.
             </TermItem>
 
             <TermItem number={4} title="التعديلات على الشروط">
-              نحتفظ بالحق في تعديل شروط الخدمة في أي وقت. سيتم إشعار المستخدمين بالتعديلات عند نشرها عبر المنصة.
+              نحتفظ بالحق في تعديل شروط الخدمة في أي وقت. سيتم إشعار المستخدمين
+              بالتعديلات عند نشرها عبر المنصة.
             </TermItem>
           </ol>
         </main>

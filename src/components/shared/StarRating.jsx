@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
 
 const StarRating = ({ rating, onRatingChange }) => {
   const [hover, setHover] = useState(null);

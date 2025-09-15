@@ -1,12 +1,11 @@
-// src/pages/ConversationsPage.jsx
-import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import apiClient from '../api/axiosConfig';
-import { useAuth } from '../context/AuthContext';
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import apiClient from "../api/axiosConfig";
+import { useAuth } from "../context/AuthContext";
 
-import LoadingState from '../components/LoadingState';
-import ErrorState from '../components/ErrorState';
-import ConversationList from '../components/conversations/ConversationList';
+import LoadingState from "../components/LoadingState";
+import ErrorState from "../components/ErrorState";
+import ConversationList from "../components/conversations/ConversationList";
 
 const ConversationsPage = () => {
   const { user, isAuthenticated } = useAuth();
@@ -20,7 +19,7 @@ const ConversationsPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await apiClient.get('/user/conversations');
+      const response = await apiClient.get("/user/conversations");
       setConversations(response.data);
     } catch (err) {
       setError("فشل في تحميل المحادثات.");
@@ -32,7 +31,7 @@ const ConversationsPage = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
     fetchConversations();
@@ -48,7 +47,10 @@ const ConversationsPage = () => {
           <h1 className="text-2xl font-bold text-sky-700">صندوق الوارد</h1>
         </header>
         <main>
-          <ConversationList conversations={conversations} currentUserId={user?.id} />
+          <ConversationList
+            conversations={conversations}
+            currentUserId={user?.id}
+          />
         </main>
       </div>
     </div>

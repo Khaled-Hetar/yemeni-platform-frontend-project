@@ -1,80 +1,97 @@
-// src/pages/ResetPassword.jsx
-
-import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import apiClient from '../api/axiosConfig';
-
-// استيراد المكونات
-import ResetPasswordForm from '../components/reset-password/ResetPasswordForm';
-import SuccessMessage from '../components/reset-password/SuccessMessage';
-import InvalidLinkMessage from '../components/reset-password/InvalidLinkMessage';
-import LoadingState from '../components/LoadingState';
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import apiClient from "../api/axiosConfig";
+import { useAuth } from "../context/AuthContext";
+import ResetPasswordForm from "../components/reset-password/ResetPasswordForm";
+import SuccessMessage from "../components/reset-password/SuccessMessage";
+import InvalidLinkMessage from "../components/reset-password/InvalidLinkMessage";
+import LoadingState from "../components/LoadingState";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { isAuthenticated, loading: authLoading } = useAuth(); // 2. استخدام useAuth
 
   const [formData, setFormData] = useState({
-    token: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    token: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [isValidatingToken, setIsValidatingToken] = useState(true);
 
   useEffect(() => {
-    const tokenFromUrl = searchParams.get('token');
-    const emailFromUrl = searchParams.get('email');
-
-    if (tokenFromUrl && emailFromUrl) {
-      setFormData(prev => ({ ...prev, token: tokenFromUrl, email: emailFromUrl }));
-    } else {
-      setError("رابط إعادة التعيين غير صالح أو منتهي الصلاحية.");
+    if (!authLoading && isAuthenticated) {
+      navigate("/dashboard");
     }
-    setIsValidatingToken(false);
-  }, [searchParams]);
+  }, [isAuthenticated, authLoading, navigate]);
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    setError(''); 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      const tokenFromUrl = searchParams.get("token");
+      const emailFromUrl = searchParams.get("email");
 
-    if (!formData.password || !formData.confirmPassword) {
-      setError('يجب ملء كلا الحقلين.');
-      return;
+      if (tokenFromUrl && emailFromUrl) {
+        setFormData((prev) => ({
+          ...prev,
+          token: tokenFromUrl,
+          email: emailFromUrl,
+        }));
+      } else {
+        setError("رابط إعادة التعيين غير صالح أو منتهي الصلاحية.");
+      }
+      setIsValidatingToken(false);
     }
-    if (formData.password.length < 8) {
-      setError('يجب أن تكون كلمة المرور 8 أحرف على الأقل.');
-      return;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      setError('كلمتا المرور غير متطابقتين.');
-      return;
-    }
+  }, [searchParams, isAuthenticated]);
 
-    setLoading(true);
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setError("");
 
-    try {
-      await apiClient.post('/reset-password', {
-        token: formData.token,
-        email: formData.email,
-        password: formData.password,
-        password_confirmation: formData.confirmPassword,
-      });
+      if (!formData.password || !formData.confirmPassword) {
+        setError("يجب ملء كلا الحقلين.");
+        return;
+      }
+      if (formData.password.length < 8) {
+        setError("يجب أن تكون كلمة المرور 8 أحرف على الأقل.");
+        return;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        setError("كلمتا المرور غير متطابقتين.");
+        return;
+      }
 
-      setSuccess(true);
-      setTimeout(() => navigate('/login'), 3000);
+      setLoading(true);
 
-    } catch (apiError) {
-      const message = apiError.response?.data?.message || 'فشل في تحديث كلمة المرور.';
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, [formData, navigate]);
+      try {
+        await apiClient.post("/reset-password", {
+          token: formData.token,
+          email: formData.email,
+          password: formData.password,
+          password_confirmation: formData.confirmPassword,
+        });
+
+        setSuccess(true);
+        setTimeout(() => navigate("/login"), 3000);
+      } catch (apiError) {
+        const message =
+          apiError.response?.data?.message || "فشل في تحديث كلمة المرور.";
+        setError(message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [formData, navigate]
+  );
+
+  if (authLoading) {
+    return <LoadingState message="جاري التحقق من حالة المصادقة..." />;
+  }
 
   if (isValidatingToken) {
     return <LoadingState message="يتم التحقق من الرابط..." />;
@@ -84,16 +101,13 @@ const ResetPassword = () => {
     return <InvalidLinkMessage error={error} />;
   }
 
-  // ===============================================================
-  // قسم الـ JSX (تم الحفاظ عليه كما هو من تصميمك الأصلي 100%)
-  // ===============================================================
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-8 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
         {success ? (
           <SuccessMessage />
         ) : (
-          <ResetPasswordForm 
+          <ResetPasswordForm
             formData={formData}
             setFormData={setFormData}
             onSubmit={handleSubmit}

@@ -1,9 +1,14 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 const ActionButtons = ({ onResend, onLogout, isResending, message }) => (
   <div className="w-full">
     {message && (
-      <p className={`mb-4 text-sm font-medium ${message.startsWith('✅') ? 'text-green-600' : 'text-red-600'}`}>
+      <p
+        className={`mb-4 text-sm font-medium ${
+          message.startsWith("✅") ? "text-green-600" : "text-red-600"
+        }`}
+      >
         {message}
       </p>
     )}
@@ -12,7 +17,7 @@ const ActionButtons = ({ onResend, onLogout, isResending, message }) => (
       disabled={isResending}
       className="w-full mb-3 py-2 px-4 bg-cyan-600 text-white rounded-lg font-medium hover:bg-cyan-700 transition disabled:opacity-60"
     >
-      {isResending ? '...جاري الإرسال' : 'إعادة إرسال رابط التفعيل'}
+      {isResending ? "...جاري الإرسال" : "إعادة إرسال رابط التفعيل"}
     </button>
     <button
       onClick={onLogout}
@@ -22,5 +27,12 @@ const ActionButtons = ({ onResend, onLogout, isResending, message }) => (
     </button>
   </div>
 );
+
+ActionButtons.propTypes = {
+  onResend: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  isResending: PropTypes.bool,
+  message: PropTypes.string,
+};
 
 export default ActionButtons;

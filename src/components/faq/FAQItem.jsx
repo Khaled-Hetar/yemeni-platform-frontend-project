@@ -1,22 +1,17 @@
-// src/components/faq/FAQItem.jsx
-import React from 'react';
+import React from "react";
 
-// إضافة قيمة افتراضية للكائن item
-const FAQItem = ({ item = {}, onToggle, isOpen }) => { 
+const FAQItem = ({ item = {}, onToggle, isOpen }) => {
   const { question, answer } = item;
 
-  // يمكنك إضافة تحقق إضافي إذا أردت
   if (!question) {
-    return null; // لا تعرض أي شيء إذا لم يكن هناك سؤال
+    return null;
   }
 
   return (
-    <div
+    <button
+      type="button"
       className="bg-white p-6 rounded-xl shadow border border-gray-200 cursor-pointer"
       onClick={onToggle}
-      role="button"
-      tabIndex={0}
-      onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') onToggle(); }}
       aria-expanded={isOpen}
       aria-controls={`faq-content-${question}`}
     >
@@ -32,7 +27,7 @@ const FAQItem = ({ item = {}, onToggle, isOpen }) => {
           {answer}
         </p>
       )}
-    </div>
+    </button>
   );
 };
 

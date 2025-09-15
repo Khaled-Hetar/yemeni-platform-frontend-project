@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3001',
+  // baseURL: 'http://localhost:3000',
+   baseURL: '/api',
+  // baseURL: "http://127.0.0.1:5000",
     // baseURL: import.meta.env.VITE_API_URL, // تأكد من أن هذا السطر موجود هكذا بالضبط
     headers: {
       'Content-Type': 'application/json',

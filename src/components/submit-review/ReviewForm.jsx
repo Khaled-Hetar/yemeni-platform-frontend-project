@@ -1,12 +1,20 @@
-import React from 'react';
-import StarRating from '../shared/StarRating';
+import React from "react";
+import PropTypes from "prop-types";
+import StarRating from "../shared/StarRating"; // تأكد من أن المسار صحيح
 
-const ReviewForm = ({ rating, setRating, comment, setComment, onSubmit, isSubmitting }) => (
+const ReviewForm = ({
+  rating,
+  setRating,
+  comment,
+  setComment,
+  onSubmit,
+  isSubmitting,
+}) => (
   <form onSubmit={onSubmit} className="mt-8 space-y-6">
     <div>
-      <label className="block text-center font-medium text-gray-700 mb-2">
+      <p className="block text-center font-medium text-gray-700 mb-2">
         تقييمك (من 1 إلى 5 نجوم)
-      </label>
+      </p>
       <StarRating rating={rating} onRatingChange={setRating} />
     </div>
     <div>
@@ -28,10 +36,19 @@ const ReviewForm = ({ rating, setRating, comment, setComment, onSubmit, isSubmit
         disabled={isSubmitting || rating === 0}
         className="w-full flex items-center justify-center gap-2 bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition-colors disabled:opacity-50"
       >
-        {isSubmitting ? 'جارٍ الإرسال...' : 'إرسال التقييم'}
+        {isSubmitting ? "جارٍ الإرسال..." : "إرسال التقييم"}
       </button>
     </div>
   </form>
 );
+
+ReviewForm.propTypes = {
+  rating: PropTypes.number.isRequired,
+  setRating: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
+  setComment: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool,
+};
 
 export default ReviewForm;

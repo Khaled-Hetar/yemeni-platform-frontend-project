@@ -1,27 +1,62 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
 
-const NavLinks = ({ items, onItemClick, isMobile = false }) => {
+const NavLinks = ({ items, onItemClick = () => {}, isMobile = false }) => {
   const location = useLocation();
 
-  const mobileItemClass = "hover:text-sky-700 ease-in-out duration-300 text-xl font-bold cursor-pointer";
-  const desktopItemClass = "hover:text-sky-700 ease-in-out duration-300 text-xl font-bold cursor-pointer";
+  const baseLinkClass =
+    "block transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 rounded-md";
+
+  const mobileLinkClass = "py-3 px-4 text-lg font-medium";
+  const desktopLinkClass = "py-2 px-3 text-base font-semibold";
 
   return (
-    <ul className={isMobile ? "flex flex-col gap-4 p-4" : "hidden lg:flex flex-row items-center gap-7"}>
-      {items.map((item) => (
-        <li
-          key={item.id}
-          className={`${isMobile ? mobileItemClass : desktopItemClass} ${location.pathname === item.path ? 'text-sky-700' : 'text-neutral-600'}`}
-          onClick={onItemClick}
-        >
-          <Link to={item.path} className="focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded" tabIndex={0} aria-current={location.pathname === item.path ? 'page' : undefined}>
-            {item.name}
-          </Link>
-        </li>
-      ))}
+    <ul
+      className={
+        isMobile
+          ? "flex flex-col gap-2 p-4"
+          : "hidden lg:flex flex-row items-center gap-1"
+      }
+    >
+      {items.map((item) => {
+        const isActive = location.pathname === item.path;
+
+        return (
+          <li key={item.id}>
+            <Link
+              to={item.path}
+              className={`
+                ${baseLinkClass}
+                ${isMobile ? mobileLinkClass : desktopLinkClass}
+                ${
+                  isActive
+                    ? "text-sky-700 bg-sky-100"
+                    : "text-neutral-700 hover:bg-gray-100"
+                }
+              `}
+              onClick={onItemClick}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.name}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
+};
+
+NavLinks.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onItemClick: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 export default NavLinks;

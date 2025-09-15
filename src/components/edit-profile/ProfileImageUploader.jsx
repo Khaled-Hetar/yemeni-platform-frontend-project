@@ -1,11 +1,12 @@
-import React from 'react';
-import { FiCamera } from 'react-icons/fi';
+import React from "react";
+import { FiCamera } from "react-icons/fi";
+import PropTypes from "prop-types";
 
 const ProfileImageUploader = ({ preview, onImageChange }) => (
   <div className="flex flex-col items-center mb-8">
     <div className="relative group">
       <img
-        src={preview || 'https://via.placeholder.com/150?text=Avatar'}
+        src={preview || "https://via.placeholder.com/150?text=Avatar"}
         alt="معاينة"
         className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md"
       />
@@ -26,6 +27,11 @@ const ProfileImageUploader = ({ preview, onImageChange }) => (
     />
     <p className="text-sm text-gray-500 mt-2">انقر على الصورة لتغييرها</p>
   </div>
- );
+);
+
+ProfileImageUploader.propTypes = {
+  preview: PropTypes.string,
+  onImageChange: PropTypes.func.isRequired,
+};
 
 export default ProfileImageUploader;

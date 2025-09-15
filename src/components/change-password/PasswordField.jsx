@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import PropTypes from "prop-types";
 
-const PasswordField = ({ id, name, label, value, onChange, required = true }) => {
+const PasswordField = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  required = true,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div>
-      <label htmlFor={id} className="block mb-1 font-medium text-neutral-700">{label}</label>
+      <label htmlFor={id} className="block mb-1 font-medium text-neutral-700">
+        {label}
+      </label>
       <div className="relative">
         <input
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           id={id}
           name={name}
           value={value}
@@ -28,6 +38,15 @@ const PasswordField = ({ id, name, label, value, onChange, required = true }) =>
       </div>
     </div>
   );
+};
+
+PasswordField.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  required: PropTypes.bool,
 };
 
 export default PasswordField;

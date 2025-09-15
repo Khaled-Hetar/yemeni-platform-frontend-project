@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import apiClient from "../api/axiosConfig";
-import { useAuth } from "../context/AuthContext";
-import { FaDollarSign, FaClock, FaFileAlt, FaHeading, FaArrowLeft } from "react-icons/fa";
+import {
+  FaDollarSign,
+  FaClock,
+  FaFileAlt,
+  FaHeading,
+  FaArrowLeft,
+} from "react-icons/fa";
 
 const EditProjectPage = () => {
   const { id } = useParams();
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -31,8 +35,11 @@ const EditProjectPage = () => {
         setDescription(project.description);
         setBudgetMin(project.budget_min);
         setBudgetMax(project.budget_max);
-        setDeadline(project.deadline ? new Date(project.deadline).toISOString().split("T")[0] : "");
-
+        setDeadline(
+          project.deadline
+            ? new Date(project.deadline).toISOString().split("T")[0]
+            : ""
+        );
       } catch (err) {
         console.error("فشل في جلب بيانات المشروع:", err);
         if (err.response && err.response.status === 404) {
@@ -63,9 +70,8 @@ const EditProjectPage = () => {
 
     try {
       await apiClient.put(`/projects/${id}`, updatedData);
-      
-      navigate("/project-management");
 
+      navigate("/project-management");
     } catch (err) {
       console.error("فشل في تحديث المشروع:", err);
       if (err.response) {
@@ -145,7 +151,7 @@ const EditProjectPage = () => {
               className="w-full p-3 border rounded-xl focus:outline-none focus:border-cyan-500"
             />
           </div>
-          
+
           <div>
             <label className="text-neutral-700 font-medium mb-1 flex items-center gap-2">
               <FaDollarSign className="text-green-600" /> أعلى ميزانية
@@ -173,7 +179,9 @@ const EditProjectPage = () => {
           />
         </div>
 
-        {error && <p className="text-red-500 text-center font-semibold">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-center font-semibold">{error}</p>
+        )}
 
         <button
           type="submit"

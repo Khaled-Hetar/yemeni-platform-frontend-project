@@ -1,10 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 const TransactionItem = ({ transaction: tx }) => {
   const isDeposit = tx.type === "deposit";
-  const iconBgClass = isDeposit ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700";
+  const iconBgClass = isDeposit
+    ? "bg-green-100 text-green-700"
+    : "bg-red-100 text-red-700";
   const amountClass = isDeposit ? "text-green-600" : "text-red-600";
   const amountSign = isDeposit ? "+" : "-";
 
@@ -16,11 +19,20 @@ const TransactionItem = ({ transaction: tx }) => {
         </div>
         <div>
           <p className="text-neutral-700 font-medium">{tx.description}</p>
-          <p className="text-sm text-gray-500">{new Date(tx.created_at).toLocaleDateString('ar-EG')}</p>
+          <p className="text-sm text-gray-500">
+            {new Date(tx.created_at).toLocaleDateString("ar-EG", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
           {tx.service_id && (
             <p className="text-sm mt-1 text-neutral-600">
               <span className="font-semibold">الخدمة ID:</span>{" "}
-              <Link to={`/services/${tx.service_id}`} className="text-sky-600 hover:underline">
+              <Link
+                to={`/services/${tx.service_id}`}
+                className="text-sky-600 hover:underline"
+              >
                 {tx.service_id}
               </Link>
             </p>
@@ -32,6 +44,19 @@ const TransactionItem = ({ transaction: tx }) => {
       </div>
     </div>
   );
+};
+
+TransactionItem.propTypes = {
+  transaction: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    type: PropTypes.oneOf(["deposit", "withdrawal", "payment", "refund"])
+      .isRequired,
+    description: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
+    service_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
 };
 
 export default TransactionItem;

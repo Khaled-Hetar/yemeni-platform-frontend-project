@@ -1,16 +1,15 @@
-// src/components/ProjectCard.jsx
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaRegClock, FaDollarSign, FaUserTie } from 'react-icons/fa';
-import { MdOutlineWorkOutline } from 'react-icons/md';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaRegClock, FaDollarSign, FaUserTie } from "react-icons/fa";
+import { MdOutlineWorkOutline } from "react-icons/md";
+import PropTypes from "prop-types";
 
 // دالة مساعدة لتنسيق التاريخ بشكل أفضل
 const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('ar-EG', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return new Date(dateString).toLocaleDateString("ar-EG", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
@@ -27,11 +26,21 @@ const ProjectCard = ({ project }) => {
           </h2>
         </Link>
         {project.user && (
-          <Link to={`/profile/${project.user.id}`} className="flex items-center gap-2 text-sm text-gray-600 hover:text-sky-700 transition-colors flex-shrink-0">
-            <img src={project.user.avatar_url || `https://i.pravatar.cc/150?u=${project.user.email}`} alt={project.user.name} className="w-7 h-7 rounded-full object-cover" />
+          <Link
+            to={`/profile/${project.user.id}`}
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-sky-700 transition-colors flex-shrink-0"
+          >
+            <img
+              src={
+                project.user.avatar_url ||
+                `https://i.pravatar.cc/150?u=${project.user.email}`
+              }
+              alt={project.user.name}
+              className="w-7 h-7 rounded-full object-cover"
+            />
             <span className="font-medium">{project.user.name}</span>
           </Link>
-         )}
+        )}
       </div>
 
       <p className="text-gray-600 line-clamp-3 leading-relaxed mb-5">
@@ -41,7 +50,9 @@ const ProjectCard = ({ project }) => {
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-700 border-t pt-4">
         <div className="flex items-center gap-2" title="الميزانية">
           <FaDollarSign className="text-green-500" />
-          <span className="font-semibold">${project.budget_min} - ${project.budget_max}</span>
+          <span className="font-semibold">
+            ${project.budget_min} - ${project.budget_max}
+          </span>
         </div>
         <div className="flex items-center gap-2" title="الموعد النهائي للتسليم">
           <FaRegClock className="text-red-500" />
@@ -54,12 +65,33 @@ const ProjectCard = ({ project }) => {
       </div>
 
       <div className="mt-5">
-        <Link to={`/projects/${project.id}`} className="inline-block w-full sm:w-auto text-center bg-sky-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-sky-700 transition-transform hover:scale-105">
+        <Link
+          to={`/projects/${project.id}`}
+          className="inline-block w-full sm:w-auto text-center bg-sky-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-sky-700 transition-transform hover:scale-105"
+        >
           عرض التفاصيل وتقديم عرض
         </Link>
       </div>
     </div>
   );
+};
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    budget_min: PropTypes.number.isRequired,
+    budget_max: PropTypes.number.isRequired,
+    deadline: PropTypes.string.isRequired,
+    proposals_count: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      avatar_url: PropTypes.string,
+      email: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default ProjectCard;

@@ -1,9 +1,11 @@
-import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
+import React from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const GoogleLoginButton = () => {
   const handleGoogleLogin = () => {
-    const googleAuthUrl = `${import.meta.env.VITE_API_URL}/auth/google/redirect`;
+    const googleAuthUrl = `${
+      import.meta.env.VITE_API_URL
+    }/auth/google/redirect`;
     window.location.href = googleAuthUrl;
   };
 

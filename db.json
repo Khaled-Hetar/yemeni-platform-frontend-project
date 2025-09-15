@@ -1,0 +1,505 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "خالد عبدالله",
+      "lastname": "هتار",
+      "name": "خالد عبدالله هتار",
+      "email": "khaled@gmail.com",
+      "password": "Khaled123456#",
+      "role": "admin",
+      "permissions": [
+        "users",
+        "transactions",
+        "settings",
+        "support",
+        "verifications",
+        "platform-settings"
+      ],
+      "status": "active",
+      "avatar_url": "https://i.pravatar.cc/150?u=khaled-hetar",
+      "accountType": "seller",
+      "specialty": "marketing",
+      "jobTitle": "مسوق رقمي",
+      "skills": ["SEO", "Google Ads", "Social Media"],
+      "aboutYou": "أنا مطور ومسؤول عن إدارة هذه المنصة.",
+      "phone": "+967776326219",
+      "birthdate": "2003-01-18",
+      "gender": "ذكر",
+      "country": "اليمن"
+    },
+    {
+      "id": 2,
+      "firstname": "فاطمة",
+      "lastname": "علي",
+      "name": "فاطمة علي",
+      "email": "fatima@example.com",
+      "password": "Fatima123456*",
+      "role": "user",
+      "status": "active",
+      "avatar_url": "https://i.pravatar.cc/150?u=fatima-ali",
+      "accountType": "seller",
+      "specialty": "design",
+      "jobTitle": "مصممة جرافيك",
+      "skills": ["Photoshop", "Illustrator", "Branding"],
+      "aboutYou": "مصممة جرافيك بخبرة 5 سنوات، متخصصة في تصميم الشعارات والهويات البصرية.",
+      "phone": "+967777123456",
+      "birthdate": "1998-05-22",
+      "gender": "أنثى",
+      "country": "اليمن"
+    },
+    {
+      "id": 3,
+      "firstname": "Sara",
+      "lastname": "Ahmed",
+      "name": "Sara Ahmed",
+      "email": "sara@gmail.com",
+      "password": "Sara123456#",
+      "role": "user",
+      "status": "active",
+      "avatar_url": "https://i.pravatar.cc/150?u=sara-ahmed",
+      "accountType": "buyer"
+    },
+    {
+      "id": 1757590692712,
+      "name": "الدعم الفني",
+      "firstname": "الدعم",
+      "lastname": "الفني",
+      "email": "support@gmail.com",
+      "password": "Support123456#",
+      "role": "admin",
+      "permissions": ["users", "support"],
+      "status": "active",
+      "avatar_url": "https://i.pravatar.cc/150?u=support@gmail.com",
+      "accountType": "buyer"
+    },
+    {
+      "id": 1757771004469,
+      "name": "خالد هتار",
+      "firstname": "خالد",
+      "lastname": "هتار",
+      "email": "Khaled776326@gmail.com",
+      "password": "Khaled123456#",
+      "role": "user",
+      "status": "active",
+      "avatar_url": "https://i.pravatar.cc/150?u=Khaled776326@gmail.com",
+      "accountType": "freelancer",
+      "specialty": "contentIndustry",
+      "jobTitle": "كاتب محتوى",
+      "skills": ["كتابة", "إبداع", "مقالات", "منشورات"],
+      "aboutYou": "أقوم بكتابة محتوى في السوشيال ميديا وغيرها حيث أنني مشهور بمحتواي"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "userId": 3,
+      "title": "تصميم شعار لشركة تقنية",
+      "description": "نبحث عن مصمم مبدع لتصميم شعار مبتكر يعكس هوية شركتنا التقنية.",
+      "proposals_count": 2,
+      "budget_min": 50,
+      "budget_max": 150,
+      "deadline": "2025-09-15T12:00:00.000Z",
+      "createdAt": "2025-08-28T10:00:00.000Z",
+      "status": "open",
+      "freelancerId": null
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "تصميم واجهات ويب",
+      "description": "تصميم واجهات ويب إحترافية بواسطة React + Tailwind",
+      "budget_min": 50,
+      "budget_max": 100,
+      "deadline": "2025-09-06",
+      "createdAt": "2025-08-28T19:37:24.448Z",
+      "proposals_count": 0,
+      "status": "open",
+      "freelancerId": null
+    }
+  ],
+  "proposals": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "userId": 2,
+      "price": 120,
+      "duration": 5,
+      "message": "لدي خبرة واسعة في تصميم الشعارات ويمكنني تقديم تصميم احترافي.",
+      "submittedAt": "2025-08-28T11:53:22.281Z"
+    },
+    {
+      "id": 2,
+      "projectId": 1,
+      "userId": 1,
+      "price": 95,
+      "duration": 3,
+      "message": "أنا متخصص في تصميم الهويات البصرية للشركات التقنية.",
+      "submittedAt": "2025-08-28T12:14:01.302Z"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "تطوير واجهات أمامية لمواقع الويب باستخدام React",
+      "description": "أقدم خدمة تطوير واجهات أمامية (Front-end  ) تفاعلية وسريعة باستخدام مكتبة React.js. تشمل الخدمة تحويل تصميمات UI/UX إلى كود نظيف ومتجاوب مع جميع الشاشات.",
+      "price": 250,
+      "main_image_url": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070",
+      "userId": 1,
+      "categoryId": 1,
+      "rating": 4.8,
+      "reviews_count": 15
+    },
+    {
+      "id": 2,
+      "title": "تصميم جرافيك وهوية بصرية",
+      "description": "تصميم شعارات وهوية بصرية كاملة للشركات الناشئة والعلامات التجارية. أركز على تقديم تصاميم فريدة وحديثة.",
+      "price": 180,
+      "main_image_url": "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071",
+      "userId": 2,
+      "categoryId": 2,
+      "rating": 5,
+      "reviews_count": 22
+    },
+    {
+      "id": 1757757337739,
+      "status": "active",
+      "createdAt": "2025-09-13T09:55:37.739Z",
+      "title": "برمجة تطبيقات موبايل",
+      "category_name": "قانون",
+      "subcategory_name": "استشارات قانونية",
+      "price": 43,
+      "description": "خالد عبدالله يحيى أمين هتار خالد عبدالله يحيى أمين هتار خالد عبدالله يحيى أمين هتار خالد عبدالله يحيى أمين هتار ",
+      "main_image_url": "https://i.ibb.co/nNcp7Zf0/image.png",
+      "gallery_images_urls": ["https://i.ibb.co/VpPGFBqd/image.png"],
+      "userId": 2
+    },
+    {
+      "id": 1757761949392,
+      "status": "active",
+      "createdAt": "2025-09-13T11:12:29.392Z",
+      "title": "قانون وإستشارات",
+      "category_name": "قانون",
+      "subcategory_name": "إعداد لوائح قانونية",
+      "price": 69,
+      "description": "والله مش داري ايش أكتب والله مش داري ايش أكتب والله مش داري ايش أكتب والله مش داري ايش أكتب والله مش داري ايش أكتب ",
+      "main_image_url": "https://i.ibb.co/xKRKTQkk/image.png",
+      "gallery_images_urls": ["https://i.ibb.co/nNcp7Zf0/image.png"],
+      "userId": 2
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "userId": 3,
+      "rating": 5,
+      "comment": "عمل ممتاز وسرعة في التسليم. المطور محترف جداً.",
+      "createdAt": "2025-09-16T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "serviceId": 2,
+      "userId": 1,
+      "rating": 5,
+      "comment": "تصاميم رائعة ومبتكرة، أنصح بالتعامل معها.",
+      "createdAt": "2025-09-15T11:00:00.000Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "برمجة وتطوير"
+    },
+    {
+      "id": 2,
+      "name": "تصميم الجرافيك"
+    },
+    {
+      "id": 3,
+      "name": "التسويق الرقمي"
+    },
+    {
+      "id": 4,
+      "name": "كتابة وترجمة"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1001,
+      "userId": 2,
+      "type": "sale_completed",
+      "amount": 180,
+      "date": "2025-09-01T14:30:00.000Z",
+      "orderId": 2,
+      "details": {
+        "description": "أرباح من خدمة: تصميم جرافيك وهوية بصرية",
+        "buyerId": 3
+      }
+    },
+    {
+      "id": 1002,
+      "userId": 3,
+      "type": "deposit",
+      "amount": 200,
+      "date": "2025-09-02T10:00:00.000Z",
+      "details": {
+        "description": "إيداع رصيد في المحفظة"
+      }
+    },
+    {
+      "id": 1003,
+      "userId": 2,
+      "type": "payout_request",
+      "amount": 150,
+      "date": "2025-09-03T18:45:00.000Z",
+      "details": {
+        "description": "طلب سحب أرباح"
+      }
+    },
+    {
+      "id": 1004,
+      "userId": 1,
+      "type": "sale_completed",
+      "amount": 95,
+      "date": "2025-09-05T09:20:00.000Z",
+      "orderId": 1,
+      "details": {
+        "description": "أرباح من مشروع: تصميم شعار لشركة تقنية",
+        "buyerId": 3
+      }
+    },
+    {
+      "id": 1005,
+      "userId": 1,
+      "type": "refund_initiated",
+      "amount": 250,
+      "date": "2025-09-08T11:00:00.000Z",
+      "orderId": 1,
+      "details": {
+        "description": "خصم مؤقت بسبب نزاع على خدمة: تطوير واجهات أمامية",
+        "buyerId": 3
+      }
+    }
+  ],
+  "payoutRequests": [],
+  "supportTickets": [
+    {
+      "id": 1,
+      "userId": 3,
+      "subject": "مشكلة في استلام الأرباح",
+      "status": "in_progress",
+      "createdAt": "2025-09-10T08:00:00.000Z",
+      "updatedAt": "2025-09-11T20:00:13.243Z",
+      "messages": [
+        {
+          "id": 1,
+          "userId": 3,
+          "text": "لقد أكملت مشروعاً منذ يومين ولم يتم إضافة المبلغ إلى رصيدي المعلق. رقم المشروع 1.",
+          "timestamp": "2025-09-10T08:00:00.000Z"
+        },
+        {
+          "id": 1757620813243,
+          "userId": 1,
+          "text": "ةىنىن",
+          "timestamp": "2025-09-11T20:00:13.243Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "subject": "استفسار بخصوص سحب الأموال",
+      "status": "in_progress",
+      "createdAt": "2025-09-09T15:20:00.000Z",
+      "updatedAt": "2025-09-09T17:05:00.000Z",
+      "messages": [
+        {
+          "id": 1,
+          "userId": 2,
+          "text": "ما هي المدة التي يستغرقها طلب السحب للوصول إلى حسابي البنكي؟",
+          "timestamp": "2025-09-09T15:20:00.000Z"
+        },
+        {
+          "id": 2,
+          "userId": 1,
+          "text": "أهلاً بكِ فاطمة، طلبات السحب تستغرق عادة من 3 إلى 5 أيام عمل. فريقنا يراجع طلبك حالياً.",
+          "timestamp": "2025-09-09T17:05:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "subject": "اقتراح: إضافة الوضع الليلي",
+      "status": "closed",
+      "createdAt": "2025-09-05T11:00:00.000Z",
+      "updatedAt": "2025-09-06T10:00:00.000Z",
+      "messages": [
+        {
+          "id": 1,
+          "userId": 1,
+          "text": "أقترح إضافة خاصية الوضع الليلي (Dark Mode) لتحسين تجربة المستخدم.",
+          "timestamp": "2025-09-05T11:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "userId": 1757590692712,
+          "text": "شكراً جزيلاً على اقتراحك الرائع! لقد قمنا بتسجيله وسيتم دراسته من قبل الفريق المختص. نغلق التذكرة الآن.",
+          "timestamp": "2025-09-06T10:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 1757685193703,
+      "userId": 3,
+      "subject": "llmlll",
+      "status": "new",
+      "createdAt": "2025-09-12T13:53:13.703Z",
+      "updatedAt": "2025-09-12T13:53:13.703Z",
+      "messages": [
+        {
+          "id": 1757685193704,
+          "userId": 3,
+          "text": "kkk",
+          "timestamp": "2025-09-12T13:53:13.703Z"
+        }
+      ]
+    },
+    {
+      "id": 1757685306278,
+      "userId": 3,
+      "subject": "إقتراح إنقاص عمولة المنصة",
+      "status": "in_progress",
+      "createdAt": "2025-09-12T13:55:06.278Z",
+      "updatedAt": "2025-09-12T13:55:41.304Z",
+      "messages": [
+        {
+          "id": 1757685306279,
+          "userId": 3,
+          "text": "عمولة المنصة كبيرة علينا نحن الزبائن",
+          "timestamp": "2025-09-12T13:55:06.278Z"
+        },
+        {
+          "id": 1757685341304,
+          "userId": 1,
+          "text": "سننظر في ذلك",
+          "timestamp": "2025-09-12T13:55:41.304Z"
+        }
+      ]
+    }
+  ],
+  "verificationRequests": [
+    {
+      "id": 1,
+      "userId": 2,
+      "status": "pending",
+      "documentType": "هوية شخصية",
+      "documentFrontUrl": "https://via.placeholder.com/400x250.png?text=Front+ID",
+      "documentBackUrl": "https://via.placeholder.com/400x250.png?text=Back+ID",
+      "selfieUrl": "https://via.placeholder.com/300x300.png?text=Selfie",
+      "submittedAt": "2025-09-10T14:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "status": "approved",
+      "documentType": "جواز سفر",
+      "documentFrontUrl": "https://via.placeholder.com/400x250.png?text=Passport",
+      "documentBackUrl": null,
+      "selfieUrl": "https://via.placeholder.com/300x300.png?text=Selfie",
+      "submittedAt": "2025-09-08T11:30:00.000Z",
+      "reviewedAt": "2025-09-09T09:00:00.000Z",
+      "reviewerId": 1
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "serviceId": 2,
+      "buyerId": 3,
+      "sellerId": 2,
+      "totalAmount": 180,
+      "status": "completed",
+      "createdAt": "2025-08-30T14:00:00.000Z",
+      "completedAt": "2025-09-02T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "serviceId": 1,
+      "buyerId": 3,
+      "sellerId": 2,
+      "totalAmount": 250,
+      "status": "new",
+      "createdAt": "2025-09-10T11:30:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "buyerId": 2,
+      "sellerId": 1,
+      "status": "cancelled",
+      "totalAmount": 250,
+      "createdAt": "2025-09-12T09:00:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": 4,
+      "serviceId": 2,
+      "buyerId": 1,
+      "sellerId": 2,
+      "status": "cancelled",
+      "totalAmount": 180,
+      "createdAt": "2025-09-05T18:00:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": 1757696805709,
+      "buyerId": 3,
+      "sellerId": 1,
+      "serviceId": 1,
+      "totalAmount": 275,
+      "status": "new",
+      "createdAt": "2025-09-12T17:06:45.682Z"
+    },
+    {
+      "id": 1757697604429,
+      "buyerId": 3,
+      "sellerId": 1,
+      "serviceId": 1,
+      "totalAmount": 275,
+      "status": "new",
+      "createdAt": "2025-09-12T17:20:04.416Z",
+      "paymentMethod": "karimi"
+    },
+    {
+      "id": 1757698421001,
+      "buyerId": 3,
+      "sellerId": 2,
+      "serviceId": 2,
+      "totalAmount": 198,
+      "status": "new",
+      "createdAt": "2025-09-12T17:33:40.668Z",
+      "paymentMethod": "onecash",
+      "paymentDetails": {
+        "cardNumber": "14",
+        "cardExpiry": "14",
+        "oneCashPhone": "77"
+      }
+    }
+  ],
+  "conversations": [],
+  "notifications": [],
+  "login": {
+    "user": {
+      "id": 1,
+      "name": "خالد عبدالله هتار",
+      "email": "khaled@gmail.com",
+      "role": "admin",
+      "avatar_url": "https://i.pravatar.cc/150?u=khaled-hetar"
+    },
+    "token": "fake-jwt-token-for-admin-user"
+  },
+  "register": {}
+}

@@ -1,19 +1,14 @@
-// src/pages/HelpCenter.jsx
-
 import React, { useCallback } from "react";
 import { FiHelpCircle, FiMail, FiMessageSquare } from "react-icons/fi";
-
-// استيراد المكون
-import HelpOptionCard from '../components/help-center/HelpOptionCard';
+import HelpOptionCard from "../components/help-center/HelpOptionCard";
 
 const HelpCenter = () => {
-  // التحسين المنطقي: استخدام useCallback لضمان عدم إعادة إنشاء الدالة
   const openChat = useCallback(() => {
     window.open(
       "https://your-chat-service-url.com", // يجب استبدال هذا بالرابط الفعلي
       "chat",
       "width=400,height=600,resizable=yes,scrollbars=yes,status=yes"
-     );
+    );
   }, []);
 
   const helpOptions = [
@@ -40,9 +35,6 @@ const HelpCenter = () => {
     },
   ];
 
-  // ===============================================================
-  // قسم الـ JSX (تم الحفاظ عليه كما هو من تصميمك الأصلي 100%)
-  // ===============================================================
   return (
     <div className="bg-gray-50 py-16 mt-14">
       <div className="max-w-5xl mx-auto px-6 text-neutral-800">
@@ -51,7 +43,8 @@ const HelpCenter = () => {
             مركز المساعدة
           </h1>
           <p className="text-md text-gray-600 mb-12">
-            نحن هنا لمساعدتك في أي وقت. اختر أحد الخيارات التالية أو ابحث عن إجابة في الأسئلة الشائعة.
+            نحن هنا لمساعدتك في أي وقت. اختر أحد الخيارات التالية أو ابحث عن
+            إجابة في الأسئلة الشائعة.
           </p>
         </header>
 
@@ -63,7 +56,8 @@ const HelpCenter = () => {
 
         <footer className="text-center text-sm text-gray-500">
           <p>
-            إذا لم تجد ما تبحث عنه، لا تتردد في مراسلتنا وسنرد عليك بأقرب وقت ممكن.
+            إذا لم تجد ما تبحث عنه، لا تتردد في مراسلتنا وسنرد عليك بأقرب وقت
+            ممكن.
           </p>
         </footer>
       </div>

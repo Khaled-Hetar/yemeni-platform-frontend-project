@@ -1,11 +1,66 @@
-// src/components/MyProjectCard.jsx
-
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaTrash, FaEdit, FaRegClock, FaDollarSign, FaCheck, FaStar } from "react-icons/fa";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  FaTrash,
+  FaEdit,
+  FaRegClock,
+  FaDollarSign,
+  FaCheck,
+  FaStar,
+} from "react-icons/fa";
 import { MdOutlineWorkOutline } from "react-icons/md";
+import {
+  FiCheckCircle,
+  FiClock,
+  FiXCircle,
+  FiAlertCircle,
+  FiPlayCircle,
+  FiPauseCircle,
+} from "react-icons/fi";
 
-const StatusBadge = ({ status }) => { /* ... نفس كود StatusBadge ... */ };
+const StatusBadge = ({ status }) => {
+  const statusConfig = {
+    متاح: {
+      icon: <FiCheckCircle />,
+      classes: "bg-green-100 text-green-800",
+    },
+    "قيد التنفيذ": {
+      icon: <FiPlayCircle />,
+      classes: "bg-blue-100 text-blue-800",
+    },
+    مكتمل: {
+      icon: <FiCheckCircle />,
+      classes: "bg-emerald-100 text-emerald-800",
+    },
+    ملغي: {
+      icon: <FiXCircle />,
+      classes: "bg-red-100 text-red-800",
+    },
+    "في الانتظار": {
+      icon: <FiClock />,
+      classes: "bg-yellow-100 text-yellow-800",
+    },
+    "متوقف مؤقتاً": {
+      icon: <FiPauseCircle />,
+      classes: "bg-orange-100 text-orange-800",
+    },
+    default: {
+      icon: <FiAlertCircle />,
+      classes: "bg-gray-100 text-gray-800",
+    },
+  };
+
+  const config = statusConfig[status] || statusConfig.default;
+
+  return (
+    <div
+      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${config.classes}`}
+    >
+      {config.icon}
+      <span>{status}</span>
+    </div>
+  );
+};
 
 const MyProjectCard = ({ project, onDelete, onComplete }) => {
   const navigate = useNavigate();
@@ -22,20 +77,32 @@ const MyProjectCard = ({ project, onDelete, onComplete }) => {
           <StatusBadge status={project.status} />
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
-          {project.status === 'in_progress' && (
-            <button onClick={() => onComplete(project.id)} className="text-xs flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1.5 rounded-md hover:bg-green-200 font-semibold">
+          {project.status === "in_progress" && (
+            <button
+              onClick={() => onComplete(project.id)}
+              className="text-xs flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1.5 rounded-md hover:bg-green-200 font-semibold"
+            >
               <FaCheck /> إنهاء
             </button>
           )}
-          {project.status === 'completed' && (
-            <button onClick={() => navigate(`/projects/${project.id}/review`)} className="text-xs flex items-center gap-1 bg-purple-100 text-purple-700 px-3 py-1.5 rounded-md hover:bg-purple-200 font-semibold">
+          {project.status === "completed" && (
+            <button
+              onClick={() => navigate(`/projects/${project.id}/review`)}
+              className="text-xs flex items-center gap-1 bg-purple-100 text-purple-700 px-3 py-1.5 rounded-md hover:bg-purple-200 font-semibold"
+            >
               <FaStar /> تقييم
             </button>
           )}
-          <button onClick={() => navigate(`/projects/edit/${project.id}`)} className="text-xs flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1.5 rounded-md hover:bg-yellow-200 font-semibold">
+          <button
+            onClick={() => navigate(`/projects/edit/${project.id}`)}
+            className="text-xs flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1.5 rounded-md hover:bg-yellow-200 font-semibold"
+          >
             <FaEdit /> تعديل
           </button>
-          <button onClick={() => onDelete(project.id)} className="text-xs flex items-center gap-1 bg-red-100 text-red-700 px-3 py-1.5 rounded-md hover:bg-red-200 font-semibold">
+          <button
+            onClick={() => onDelete(project.id)}
+            className="text-xs flex items-center gap-1 bg-red-100 text-red-700 px-3 py-1.5 rounded-md hover:bg-red-200 font-semibold"
+          >
             <FaTrash /> حذف
           </button>
         </div>
@@ -44,8 +111,18 @@ const MyProjectCard = ({ project, onDelete, onComplete }) => {
       <p className="text-gray-600 mt-3 line-clamp-2">{project.description}</p>
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 text-sm text-gray-700 border-t pt-4">
-        <div className="flex items-center gap-2"><FaDollarSign className="text-green-500" /><span>الميزانية: ${project.budget_min} - ${project.budget_max}</span></div>
-        <div className="flex items-center gap-2"><FaRegClock className="text-red-500" /><span>الانتهاء: {new Date(project.deadline).toLocaleDateString("ar-EG")}</span></div>
+        <div className="flex items-center gap-2">
+          <FaDollarSign className="text-green-500" />
+          <span>
+            الميزانية: ${project.budget_min} - ${project.budget_max}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <FaRegClock className="text-red-500" />
+          <span>
+            الانتهاء: {new Date(project.deadline).toLocaleDateString("ar-EG")}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
-// src/components/notifications/NotificationHeader.jsx
-import React from 'react';
-import { FiCheckCircle, FiTrash2 } from 'react-icons/fi';
+import React from "react";
+import { FiCheckCircle, FiTrash2 } from "react-icons/fi";
+import PropTypes from "prop-types";
 
-const NotificationHeader = ({ onMarkAllAsRead, onDeleteAll, hasNotifications }) => (
+const NotificationHeader = ({
+  onMarkAllAsRead,
+  onDeleteAll,
+  hasNotifications,
+}) => (
   <header className="flex items-center justify-between mb-8">
     <h1 className="text-3xl font-bold text-sky-700">الإشعارات</h1>
     {hasNotifications && (
@@ -23,5 +27,11 @@ const NotificationHeader = ({ onMarkAllAsRead, onDeleteAll, hasNotifications }) 
     )}
   </header>
 );
+
+NotificationHeader.propTypes = {
+  onMarkAllAsRead: PropTypes.func.isRequired,
+  onDeleteAll: PropTypes.func.isRequired,
+  hasNotifications: PropTypes.bool.isRequired,
+};
 
 export default NotificationHeader;

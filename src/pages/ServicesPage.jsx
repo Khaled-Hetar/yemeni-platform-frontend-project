@@ -1,14 +1,11 @@
-// src/pages/ServicesPage.jsx
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import apiClient from '../api/axiosConfig';
-
-// استيراد المكونات
-import ServiceCard from '../components/services/ServiceCard';
-import ServiceFilters from '../components/services/ServiceFilters';
-import LoadingState from '../components/LoadingState';
-import ErrorState from '../components/ErrorState';
-import EmptyState from '../components/conversations/EmptyState';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import apiClient from "../api/axiosConfig";
+import ServiceCard from "../components/services/ServiceCard";
+import ServiceFilters from "../components/services/ServiceFilters";
+import LoadingState from "../components/LoadingState";
+import ErrorState from "../components/ErrorState";
+import EmptyState from "../components/conversations/EmptyState";
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
@@ -22,7 +19,7 @@ const ServicesPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await apiClient.get('/services?_expand=user');
+      const response = await apiClient.get("/services?_expand=user");
       setServices(response.data || []);
     } catch (err) {
       setError("حدث خطأ أثناء جلب الخدمات. يرجى التأكد من أن الخادم يعمل.");
@@ -38,23 +35,27 @@ const ServicesPage = () => {
 
   const filteredAndSortedServices = useMemo(() => {
     return services
-      .filter(service => {
-        const matchesCategory = activeCategory === "الكل" || service.category?.name === activeCategory;
-        const matchesSearch = !searchTerm || service.title.toLowerCase().includes(searchTerm.toLowerCase());
+      .filter((service) => {
+        const matchesCategory =
+          activeCategory === "الكل" ||
+          service.category?.name === activeCategory;
+        const matchesSearch =
+          !searchTerm ||
+          service.title.toLowerCase().includes(searchTerm.toLowerCase());
         return matchesCategory && matchesSearch;
       })
       .sort((a, b) => {
         switch (sortBy) {
-          case 'rating': { // استخدام الأقواس المعقوفة لحل مشكلة النطاق
+          case "rating": {
             const ratingA = a.average_rating || 0;
             const ratingB = b.average_rating || 0;
             return ratingB - ratingA;
           }
-          case 'price_asc':
+          case "price_asc":
             return (a.price || 0) - (b.price || 0);
-          case 'price_desc':
+          case "price_desc":
             return (b.price || 0) - (a.price || 0);
-          case 'latest':
+          case "latest":
           default:
             return (b.id || 0) - (a.id || 0);
         }
@@ -62,7 +63,9 @@ const ServicesPage = () => {
   }, [services, searchTerm, activeCategory, sortBy]);
 
   const categories = useMemo(() => {
-    const uniqueCategories = new Set(services.map(s => s.category?.name).filter(Boolean));
+    const uniqueCategories = new Set(
+      services.map((s) => s.category?.name).filter(Boolean)
+    );
     return ["الكل", ...uniqueCategories];
   }, [services]);
 
@@ -78,8 +81,12 @@ const ServicesPage = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">اكتشف الخدمات الإبداعية</h1>
-            <p className="mt-3 max-w-2xl mx-auto text-md text-gray-500">ابحث عن الخدمة المثالية لمشروعك القادم.</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">
+              اكتشف الخدمات الإبداعية
+            </h1>
+            <p className="mt-3 max-w-2xl mx-auto text-md text-gray-500">
+              ابحث عن الخدمة المثالية لمشروعك القادم.
+            </p>
           </div>
 
           <ServiceFilters
@@ -96,11 +103,14 @@ const ServicesPage = () => {
         <div className="mb-4 text-sm text-gray-600">
           <strong>{filteredAndSortedServices.length}</strong> خدمة متاحة
         </div>
-        
-        <div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
           <AnimatePresence>
             {filteredAndSortedServices.length > 0 ? (
-              filteredAndSortedServices.map(service => (
+              filteredAndSortedServices.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))
             ) : (
@@ -113,14 +123,14 @@ const ServicesPage = () => {
                   message="لا توجد خدمات تطابق بحثك"
                   actionText="إعادة تعيين الفلاتر"
                   onAction={() => {
-                    setSearchTerm('');
-                    setActiveCategory('الكل');
+                    setSearchTerm("");
+                    setActiveCategory("الكل");
                   }}
                 />
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

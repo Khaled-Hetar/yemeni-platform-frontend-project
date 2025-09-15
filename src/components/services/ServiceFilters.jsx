@@ -1,6 +1,6 @@
-// src/components/services/ServiceFilters.jsx
-import React from 'react';
-import { FiSearch } from 'react-icons/fi';
+import React from "react";
+import { FiSearch } from "react-icons/fi";
+import PropTypes from "prop-types";
 
 const ServiceFilters = ({
   searchTerm,
@@ -14,7 +14,10 @@ const ServiceFilters = ({
   return (
     <div className="mb-10 space-y-6">
       <div className="relative">
-        <FiSearch className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400" size={20} />
+        <FiSearch
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400"
+          size={20}
+        />
         <input
           type="text"
           placeholder="ابحث بالعنوان..."
@@ -26,14 +29,14 @@ const ServiceFilters = ({
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center flex-wrap gap-2">
-          {categories.map(category => (
+          {categories.map((category) => (
             <button
               key={category}
               onClick={() => onCategoryChange(category)}
               className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-cyan-600 text-white shadow-md'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
+                  ? "bg-cyan-600 text-white shadow-md"
+                  : "bg-white text-gray-600 hover:bg-gray-100"
               }`}
             >
               {category}
@@ -56,6 +59,16 @@ const ServiceFilters = ({
       </div>
     </div>
   );
+};
+
+ServiceFilters.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeCategory: PropTypes.string.isRequired,
+  onCategoryChange: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired,
 };
 
 export default ServiceFilters;

@@ -1,7 +1,6 @@
-// src/components/conversations/ConversationList.jsx
-import React from 'react';
-import ConversationItem from './ConversationItem';
-import EmptyState from './EmptyState'; // سنقوم بإنشاء هذا المكون
+import React from "react";
+import ConversationItem from "./ConversationItem";
+import EmptyState from "./EmptyState";
 
 const ConversationList = ({ conversations, currentUserId }) => {
   if (conversations.length === 0) {
@@ -12,10 +11,10 @@ const ConversationList = ({ conversations, currentUserId }) => {
     <div className="bg-white rounded-2xl shadow border border-gray-200 overflow-hidden">
       <ul className="divide-y divide-gray-200">
         {conversations.map((convo) => (
-          <ConversationItem 
-            key={convo.id} 
-            conversation={convo} 
-            currentUserId={currentUserId} 
+          <ConversationItem
+            key={convo.id}
+            conversation={convo}
+            currentUserId={currentUserId}
           />
         ))}
       </ul>

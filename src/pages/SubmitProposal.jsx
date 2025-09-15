@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaDollarSign, FaClock, FaCommentDots } from "react-icons/fa";
 import apiClient from './api/axiosConfig';
 
 const SubmitProposalPage = () => {
-  // --- نقطة طباعة 1: هل نحصل على projectId من الرابط؟ ---
   const { projectId } = useParams();
   console.log('[SubmitProposal] 1. projectId من الرابط هو:', projectId);
 

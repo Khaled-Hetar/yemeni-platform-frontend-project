@@ -1,7 +1,7 @@
-import React from 'react';
-import ProjectCard from './ProjectCard';
-import LoadingState from '../LoadingState';
-import ErrorState from '../ErrorState';
+import React from "react";
+import ProjectCard from "./ProjectCard";
+import LoadingState from "../LoadingState";
+import ErrorState from "../ErrorState";
 
 const ProjectsList = ({ loading, error, projects }) => {
   if (loading) {

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import { FiAlertCircle } from "react-icons/fi";
 
 const ErrorState = ({ message = "حدث خطأ غير متوقع.", onRetry }) => (
@@ -7,8 +8,8 @@ const ErrorState = ({ message = "حدث خطأ غير متوقع.", onRetry }) =
     <h2 className="text-xl font-bold text-gray-800 mb-2">عذرًا، حدث خطأ ما</h2>
     <p className="text-red-600 font-semibold mb-6">{message}</p>
     {onRetry && (
-      <button 
-        onClick={onRetry} 
+      <button
+        onClick={onRetry}
         className="bg-sky-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-sky-700 transition"
       >
         إعادة المحاولة
@@ -16,5 +17,10 @@ const ErrorState = ({ message = "حدث خطأ غير متوقع.", onRetry }) =
     )}
   </div>
 );
+
+ErrorState.propTypes = {
+  message: PropTypes.string,
+  onRetry: PropTypes.func,
+};
 
 export default ErrorState;

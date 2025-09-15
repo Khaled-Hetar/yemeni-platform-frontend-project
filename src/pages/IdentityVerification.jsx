@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-
+// import axios from "axios";
 const IdentityVerification = () => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -18,9 +17,9 @@ const IdentityVerification = () => {
 
     try {
       setUploading(true);
-      const response = await axios.post("/api/user/verify-id", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // const response = await axios.post("/api/user/verify-id", formData, {
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
       alert("تم رفع مستند الهوية بنجاح، سيتم التحقق منه قريباً");
     } catch (error) {
       alert("حدث خطأ أثناء رفع مستند الهوية");

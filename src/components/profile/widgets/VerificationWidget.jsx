@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { FaMobileAlt } from "react-icons/fa";
 import { HiOutlineIdentification } from "react-icons/hi";
 import { BsShieldLock } from "react-icons/bs";
@@ -10,16 +11,30 @@ const VerificationItem = ({ label, isVerified, linkTo, icon, isOwner }) => (
       {icon}
       <div>
         <p className="font-semibold text-neutral-700">{label}</p>
-        <p className={`text-sm ${isVerified ? 'text-green-600' : 'text-neutral-500'}`}>
-          {isVerified ? 'موثّق' : 'لم يتم التوثيق بعد'}
+        <p
+          className={`text-sm ${
+            isVerified ? "text-green-600" : "text-neutral-500"
+          }`}
+        >
+          {isVerified ? "موثّق" : "لم يتم التوثيق بعد"}
         </p>
       </div>
     </div>
     {!isVerified && isOwner && (
-      <Link to={linkTo} className="text-cyan-600 text-sm hover:underline">توثيق الآن</Link>
+      <Link to={linkTo} className="text-cyan-600 text-sm hover:underline">
+        توثيق الآن
+      </Link>
     )}
   </div>
 );
+
+VerificationItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  isVerified: PropTypes.bool,
+  linkTo: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  isOwner: PropTypes.bool,
+};
 
 const VerificationWidget = ({ verifications, isOwner }) => (
   <div className="bg-white p-6 rounded-xl shadow-md border">
@@ -28,14 +43,14 @@ const VerificationWidget = ({ verifications, isOwner }) => (
       <h3 className="text-lg font-semibold text-cyan-700">توثيق الحساب</h3>
     </div>
     <div className="space-y-4">
-      <VerificationItem 
+      <VerificationItem
         label="الهاتف المحمول"
         isVerified={verifications.phone_verified}
         linkTo="/verify/phone"
         icon={<FaMobileAlt className="text-2xl text-neutral-600" />}
         isOwner={isOwner}
       />
-      <VerificationItem 
+      <VerificationItem
         label="الهوية"
         isVerified={verifications.identity_verified}
         linkTo="/verify/identity"
@@ -45,5 +60,13 @@ const VerificationWidget = ({ verifications, isOwner }) => (
     </div>
   </div>
 );
+
+VerificationWidget.propTypes = {
+  verifications: PropTypes.shape({
+    phone_verified: PropTypes.bool,
+    identity_verified: PropTypes.bool,
+  }).isRequired,
+  isOwner: PropTypes.bool,
+};
 
 export default VerificationWidget;

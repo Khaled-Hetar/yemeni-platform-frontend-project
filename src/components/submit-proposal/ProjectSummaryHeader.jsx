@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ProjectSummaryHeader = ({ project }) => {
   const navigate = useNavigate();

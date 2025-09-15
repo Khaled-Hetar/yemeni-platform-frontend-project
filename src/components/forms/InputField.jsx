@@ -1,6 +1,5 @@
-// src/components/forms/InputField.jsx
-
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 /**
  * مكون يغلف حقل الإدخال مع التسمية ورسالة الخطأ.
@@ -19,5 +18,12 @@ const InputField = ({ id, label, error, children }) => (
     {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
   </div>
 );
+
+InputField.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export default InputField;

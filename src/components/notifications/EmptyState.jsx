@@ -1,5 +1,5 @@
-import React from 'react';
-import { FiBell } from 'react-icons/fi';
+import React from "react";
+import { FiBell } from "react-icons/fi";
 
 const EmptyState = () => (
   <div className="bg-white rounded-2xl shadow-lg border border-gray-200">

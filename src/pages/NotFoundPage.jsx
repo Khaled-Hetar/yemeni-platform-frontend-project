@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiAlertTriangle, FiHome } from 'react-icons/fi';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FiAlertTriangle, FiHome } from "react-icons/fi";
 
 const NotFoundPage = () => {
   return (
@@ -9,10 +9,13 @@ const NotFoundPage = () => {
         <FiAlertTriangle className="mx-auto text-6xl text-yellow-400 mb-6" />
 
         <h1 className="text-5xl font-extrabold text-gray-800 mb-2">404</h1>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">الصفحة غير موجودة</h2>
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+          الصفحة غير موجودة
+        </h2>
 
         <p className="text-gray-500 leading-relaxed mb-8">
-          عذراً، لا يمكننا العثور على الصفحة التي تبحث عنها. ربما تم حذفها أو أن الرابط الذي اتبعته غير صحيح.
+          عذراً، لا يمكننا العثور على الصفحة التي تبحث عنها. ربما تم حذفها أو أن
+          الرابط الذي اتبعته غير صحيح.
         </p>
 
         <Link

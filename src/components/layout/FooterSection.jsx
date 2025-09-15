@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const FooterSection = ({ title, items }) => (
   <div>
@@ -7,7 +7,10 @@ const FooterSection = ({ title, items }) => (
     <ul>
       {items.map((item, i) => (
         <li key={i}>
-          <Link to={item.link} className="block py-1 text-neutral-600 hover:text-cyan-600 transition cursor-pointer">
+          <Link
+            to={item.link}
+            className="block py-1 text-neutral-600 hover:text-cyan-600 transition cursor-pointer"
+          >
             {item.text}
           </Link>
         </li>
